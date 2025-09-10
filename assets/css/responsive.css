@@ -6,7 +6,7 @@
 	.single-about-img:before,.about-list-icon{width: 100%;}
 }/*max-width:1440px*/
 
-@media screen and (max-width:1199px){
+@media screen and (max-width:1680px){
 	nav.navbar.bootsnav ul.nav > li > a { padding: 35px 8px;}
 	
 	.welcome-hero {height: 768px;}

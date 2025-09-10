@@ -271,7 +271,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
 /*.single-about-txt*/
 
 /*.single-about-img */
-.single-about-img{position: relative;box-shadow: 0 5px 20px rgba(35, 82, 143, 0.3);}
+.single-about-img{position: relative;box-shadow: 0 10px 20px rgba(35, 82, 143, 0.3);}
 .single-about-img:before {
     position:  absolute;
     content: " ";
@@ -282,8 +282,8 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
     background: rgba(42, 55, 119, 0.3);
 }
 .single-about-img img {
-    max-width: 500px;
-    height: 780px;
+    max-width: 109%;
+    height: 100%;
 }
 .about-list-icon{
     display: flex;
