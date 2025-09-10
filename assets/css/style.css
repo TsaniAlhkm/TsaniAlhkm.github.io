@@ -277,13 +277,13 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
     content: " ";
     top: 0;
     left:  0;
-    width: 109%;
+    width: 460px;
     height:  100%;
     background: rgba(42, 55, 119, 0.3);
 }
 .single-about-img img {
-    max-width: 109%;
-    height: 100%;
+    max-width: 460px;
+    height: 720px;
 }
 .about-list-icon{
     display: flex;
@@ -292,7 +292,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #d92cf9;}
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 109%;
+    width: 460px;
     height: 70px;
     background: #1f2c6c;
 }
