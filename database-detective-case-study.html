@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SQL Investigation Case Study | Tsani Fauzan Alhakim</title>
+<style>body{font:17px/1.65 system-ui,sans-serif;color:#172b3a;background:#f6f8fa;margin:0}main{max-width:900px;margin:auto;padding:40px 24px}a{color:#165b91}h1,h2{line-height:1.2}section{background:white;border:1px solid #dce3e8;border-radius:12px;padding:26px;margin:24px 0}pre{background:#10212f;color:#e9f2f8;padding:18px;overflow:auto;border-radius:8px;font-size:14px}code{font-family:ui-monospace,Consolas,monospace}.tag{font-size:14px;color:#536677}nav{display:flex;gap:18px;flex-wrap:wrap}li{margin:5px 0}</style>
+<main><nav><a href="index.html">Portfolio home</a><a href="case-studies.html">All case studies</a><a href="database-detective-queries.sql">Selected SQL</a></nav>
+<p class="tag">Independent project · SQL · Relational investigation</p><h1>SQL Investigation in Database Detective</h1><p>A relational querying case study based on <em>Database Detective: Minor Crimes Division</em>, an educational game with fictional cases and data.</p>
+<section><h2>Objective and evidence</h2><p>Each simulated case required translating narrative clues into filters, finding the relevant tables, connecting records through keys, and validating intermediate results. The reviewed save and four player logs contain completion markers for Cases 1–7 and 101 distinct query strings. Culprit names are omitted because the project is about the analytical method.</p></section>
+<section><h2>SQL demonstrated</h2><ul><li>WHERE filters, comparisons, AND, OR and LIKE</li><li>Single-table and multi-table JOIN operations</li><li>SUM, AVG, MAX and COUNT aggregations</li><li>GROUP BY, HAVING, calculated fields and ORDER BY</li><li>Intermediate result tables and iterative query debugging</li></ul><p>No evidence of CTEs, subqueries or window functions was found, so those techniques are not claimed.</p></section>
+<section><h2>Example 1 Comparing order value and tips</h2><p>The query history shows a five-step analytical path: aggregate item prices by order, aggregate tips by order, join the intermediate results, calculate a ratio, and correct the calculation direction after reviewing the output.</p><pre><code>SELECT
+    d1.order_number,
+    d2.total_tipped / d1.total_harga AS percentage_tips
+FROM result_1 AS d1
+JOIN result_2 AS d2
+    ON d1.order_number = d2.order_number
+ORDER BY percentage_tips DESC;</code></pre><p>This demonstrates iteration and validation, rather than presenting only a final answer.</p></section>
+<section><h2>Example 2 Connecting evidence across sources</h2><p>Another case combined textual clues, donation totals, membership records, rental information and driver data. The work used two LIKE conditions, aggregation by account, a HAVING threshold, and later joins to membership and location evidence.</p><pre><code>SELECT
+    payup_account,
+    SUM(amount) AS total_donation
+FROM payup_cashboys
+WHERE note LIKE '%member%'
+   OR note LIKE '%donation%'
+GROUP BY payup_account
+HAVING SUM(amount) &gt; 75;</code></pre><pre><code>SELECT *
+FROM patriots AS d1
+JOIN drivers AS d2
+    ON d1.first_name = d2.first_name
+JOIN result_2 AS d3
+    ON d2.neighborhood = d3.neighborhood;</code></pre></section>
+<section><h2>Validation and limitations</h2><p>Completion is supported by the game's own success markers for Cases 1–7. The current save records five general hints and zero query hints; this is context, not a performance claim. Logs preserve unsuccessful and corrected queries, which provide useful evidence of debugging. Because the game uses a custom parser, the project demonstrates core relational reasoning but does not establish production database experience or advanced SQL proficiency.</p></section>
+</main></html>
